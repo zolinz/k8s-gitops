@@ -211,6 +211,9 @@ spec:
     outboundTrafficPolicy:
       mode: REGISTRY_ONLY
     defaultConfig:
+      # https://istio.io/latest/docs/ops/configuration/traffic-management/network-topologies/#configuring-x-forwarded-for-headers
+      gatewayTopology:
+        numTrustedProxies: 2
       proxyMetadata: {}
     enablePrometheusMerge: true
   tag: 1.7.3
