@@ -215,6 +215,8 @@ spec:
       gatewayTopology:
         numTrustedProxies: 2
       proxyMetadata: {}
+    # https://istio.io/latest/docs/ops/integrations/prometheus/#option-1-metrics-merging
+    # https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#prometheusioscrape
     enablePrometheusMerge: true
   tag: 1.7.3
   values:

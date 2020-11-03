@@ -1,28 +1,51 @@
+---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: istio-federation
-  labels:
-    app.kubernetes.io/name: istio-prometheus
+  name: istiod
+spec:
+  endpoints:
+    - path: /metrics
+      port: exporter
+  namespaceSelector:
+    matchNames:
+      - istio-system
+  selector:
+    matchLabels:
+      app: istiod
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: istio-ingressgateway
 spec:
   namespaceSelector:
     matchNames:
       - istio-system
   selector:
     matchLabels:
-      app: prometheus
-  endpoints:
-    - interval: 30s
-      scrapeTimeout: 30s
-      params:
-        'match[]':
-          - '{__name__=~"workload:(.*)"}'
-          - '{__name__=~"pilot(.*)"}'
-      path: /federate
-      targetPort: 9090
-      honorLabels: true
-      metricRelabelings:
-        - sourceLabels: ['__name__']
-          regex: 'workload:(.*)'
-          targetLabel: '__name__'
-          action: replace
+      app: istio-ingressgateway
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: istio-ingressgateway
+spec:
+  namespaceSelector:
+    matchNames:
+      - istio-system
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: istio-ingressgateway
+spec:
+  namespaceSelector:
+    matchNames:
+      - istio-system
+  selector:
+    matchLabels:
+      istio.io/rev: default
