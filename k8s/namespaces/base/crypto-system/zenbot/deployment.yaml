@@ -29,11 +29,11 @@ spec:
             - name: ZENBOT_MONGO_USERNAME
               value: admin
             - name: ZENBOT_MONGO_PASSWORD
-              value: ''
+              value: ""
             - name: ZENBOT_MONGO_USERNAME
               value: admin
           # image: deviavir/zenbot:unstable
-          image: fculpo/zenbot:latest
+          image: deviavir/zenbot:latest
           imagePullPolicy: IfNotPresent
           name: zenbot
           ports:

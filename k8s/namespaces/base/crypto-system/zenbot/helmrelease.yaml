@@ -23,14 +23,14 @@ spec:
   values:
     architecture: standalone
     auth:
-      rootPassword: ''
-      username: ''
-      password: ''
-      database: 'zenbot4'
+      rootPassword: "admin"
+      username: "admin"
+      password: "admin"
+      database: "zenbot4"
     persistence:
       enabled: false
       #  existingClaim: "-"
-      storageClass: ''
+      storageClass: ""
       accessModes:
         - ReadWriteOnce
       size: 8Gi
