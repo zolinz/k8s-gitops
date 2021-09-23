@@ -22,7 +22,6 @@ containerRuntime:
 endpointRoutes:
   enabled: false
 
-
 # masquerade enables masquerading of traffic leaving the node for
 # destinations outside of the cluster.
 masquerade: true
@@ -146,6 +145,7 @@ clustermesh:
         repository: quay.io/coreos/etcd
         tag: v3.5.0
         pullPolicy: IfNotPresent
+
 
 # -- Roll out cilium agent pods automatically when configmap is updated.
 rollOutCiliumPods: true
